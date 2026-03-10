@@ -13,7 +13,7 @@ public class GeminiManager {
 
     public GeminiManager() {
         this.model = GoogleAiGeminiChatModel.builder()
-                .apiKey("AIzaSyBepeS0nhq34eV646Ig8yi1YhMjbqlhk9U")
+                .apiKey("MSG for api key")
                 .modelName("gemini-3.1-flash-lite-preview")
                 .timeout(java.time.Duration.ofSeconds(60))
                 .build();
