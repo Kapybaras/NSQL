@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NSQL | Console</title>
+    <link rel="stylesheet" th:href="@{/nsql-hub.css(v='1.0.4')}">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand-area">
+            <h2>Menu</h2>
+            <div class="status-dot"></div>
+        </div>
+        <button class="log-btn">Query Logs</button>
+    </aside>
+
+    <main class="main-workspace">
+        <header>NSQL Interface Console</header>
+
+        <div class="panel-grid">
+            <section class="panel">
+                <div class="panel-title">CONVERSATION</div>
+                <div class="scroll-area">
+                    <ul>
+                        <li th:each="currentMessage : ${messages}" 
+                            class="chatMessage" 
+                            th:classappend="${currentMessage.owner}">
+                            
+                            <div th:if="${#strings.contains(currentMessage.message, 'Security Alert')}" class="error-bubble">
+                                <span class="warning-icon">⚠️</span>
+                                <span th:text="${currentMessage.message}"></span>
+                            </div>
+
+                            <div th:unless="${#strings.contains(currentMessage.message, 'Security Alert')}" class="bubble">
+                                <span th:text="${currentMessage.message}"></span>
+                                <div class="owner-tag" th:text="${currentMessage.owner}"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <form class="input-form" th:action="@{/}" method="post" th:object="${message}">
+                    <div class="input-group">
+                        <input type="text" th:field="*{message}" placeholder="Enter NSQL command..." autocomplete="off" required>
+                        <button type="submit">Execute</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="panel">
+                <div class="panel-title">DATABASE RESULTS</div>
+                <div class="scroll-area">
+                    <div th:if="${DatabaseResults == null or #lists.isEmpty(DatabaseResults)}" class="empty-state">
+                        <p>No active query results.</p>
+                        <small>Data will appear here after execution.</small>
+                    </div>
+
+                    <ul class="results-list">
+                        <li th:each="resultItem : ${DatabaseResults}" class="result-entry">
+                            <code th:text="${resultItem}"></code>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>

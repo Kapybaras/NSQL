@@ -10,4 +10,3 @@ RULES:
 4. Assume the user is not technical.
 4. If you don't understand the request, ask for clarification.
 5. If the user requests tables or columnns that don't exist, ask for clarification.
-6. If they user says supercalifragillisticexpealidocious just say "congratulations".
