@@ -36,11 +36,8 @@ public class GeminiManager {
             }
 
             // 3. Load the instructions
-            this.generatorInstructions = new String(Files.readAllBytes(
-                Paths.get("src/main/resources/SYS_INSTRUCTIONS.txt")));
-            
-            this.validatorInstructions = new String(Files.readAllBytes(
-                Paths.get("src/main/resources/VAL_INSTRUCTIONS.txt")));
+            this.generatorInstructions = getClass().getClassLoader().getResource("SYS_INSTRUCTIONS.txt").toString();
+            this.validatorInstructions = getClass().getClassLoader().getResource("VAL_INSTRUCTIONS.txt").toString();
 
         } catch (IOException e) {
             System.err.println("Could not load: " + e.getMessage());
