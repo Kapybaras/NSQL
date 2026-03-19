@@ -1,3 +1,4 @@
 /.metadata/
 NSQL/src/main/resources/application-secrets.properties
 NSQL/target/
+NSQL/database.properties
