@@ -1,4 +1,4 @@
-package uk.ac.bangor.cs.dyp24nbv.controler;
+package uk.ac.bangor.cs.dyp24nbv.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +40,12 @@ public class ChatController {
 		return "workspace";
 	}
 	@PostMapping("")
-	public String upDateChat(Message message, BindingResult result,Model m) 
+	public String upDateChat(Message message, BindingResult result, Model m) 
 	{
 		messages.add(message);
-		messages.add(new Message(Message.People.AI,ai.askAI(message.getMessage())));
-		results = dto.getAllparametersFromStatement(ai.askAI(message.getMessage()));
+		String response = ai.askAI(message.getMessage());
+		messages.add(new Message(Message.People.AI, response));
+		results = dto.getAllparametersFromStatement(response);
 
 		return showChat(m);
 	}
