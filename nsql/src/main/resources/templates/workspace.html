@@ -48,23 +48,27 @@
                 </form>
             </section>
 
-            <section class="panel">
-                <div class="panel-title">DATABASE RESULTS</div>
-                <div class="scroll-area">
-                    <div th:if="${DatabaseResults == null or #lists.isEmpty(DatabaseResults)}" class="empty-state">
-                        <p>No active query results.</p>
-                        <small>Data will appear here after execution.</small>
-                    </div>
+			<section class="panel">
+			    <div class="panel-title">DATABASE RESULTS</div>
+			    <div class="scroll-area">
+			        <table th:if="${DatabaseResults != null and !#lists.isEmpty(DatabaseResults)}" class="results-table">
+			            <thead>
+			                <tr>
+			                    <th th:each="column : ${DatabaseResults[0].keySet()}" th:text="${column}">Header</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr th:each="row : ${DatabaseResults}">
+			                    <td th:each="entry : ${row}" th:text="${entry.value}">Data</td>
+			                </tr>
+			            </tbody>
+			        </table>
 
-                    <ul class="results-list">
-                        <li th:each="resultItem : ${DatabaseResults}" class="result-entry">
-                            <code th:each="str : ${resultItem}">
-                            	<span th:text="${str}"></span>
-                            </code>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+			        <div th:if="${DatabaseResults == null or #lists.isEmpty(DatabaseResults)}" class="empty-state">
+			            <p>No active query results.</p>
+			        </div>
+			    </div>
+			</section>
         </div>
     </main>
 

@@ -48,11 +48,15 @@ public class GeminiManager {
 	 * Multi-Pass Audit Logic: Pass 1: Generate SQL from Natural Language Pass 2:
 	 * Audit the generated SQL for safety
 	 */
-	public String askAI(String userQuery) {
+	public String askAI(String userQuery, String dynamicSchema) {
 		try {
-			// PASS 1: Generation
-			String sqlGenerationPrompt = generatorInstructions + "\nUser Query: " + userQuery;
-			String generatedSQL = model.generate(sqlGenerationPrompt).trim();
+	        // Inject the real database schema into the instruction template
+	        String personalizedInstructions = this.generatorInstructions
+	                .replace("{{DYNAMIC_SCHEMA}}", dynamicSchema);
+
+	        // PASS 1: Generation
+	        String generationPrompt = personalizedInstructions + "\nUser Query: " + userQuery;
+	        String generatedSQL = model.generate(generationPrompt).trim();
 
 			// PASS 2: Validation
 			String validationPrompt = validatorInstructions + "\nPROPOSED SQL: " + generatedSQL
