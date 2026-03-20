@@ -45,6 +45,11 @@ public class GeminiManager {
             // Pass 1
             String personalizedInstructions = genInstructions.replace("{{DYNAMIC_SCHEMA}}", dynamicSchema);
             String generatedSQL = model.generate(personalizedInstructions + "\nUser Query: " + userQuery).trim();
+            
+         // Check if AI is asking for clarification
+            if (generatedSQL.startsWith("CLARIFICATION:") || generatedSQL.contains("ERROR:")) {
+                return generatedSQL; // Bypass Auditor for non-SQL responses
+            }
 
             // Pass 2
             String auditResponse = model.generate(valInstructions + "\nPROPOSED SQL: " + generatedSQL).trim();
