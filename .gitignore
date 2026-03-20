@@ -1,4 +1,11 @@
+# Ignore compiled build files
+**/target/
+
+# Ignore the secrets file specifically
+**/src/main/resources/application-secrets.properties
+
+# Ignore IDE-specific metadata
 /.metadata/
-NSQL/src/main/resources/application.properties
-NSQL/target/
-NSQL/database.properties
+.project
+.classpath
+.settings/
