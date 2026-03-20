@@ -21,8 +21,8 @@ public class GeminiManager {
 	private String validatorInstructions;
 
 	@Autowired
-	public GeminiManager(@Value("${gemini.api.key}") String apiKey) {
-		this.model = GoogleAiGeminiChatModel.builder().apiKey(apiKey).modelName("gemini-3.1-flash-lite-preview")
+	public GeminiManager(@Value("${gemini.api.key}") String apiKey, @Value("${gemini.model.name}") String modelName) {
+		this.model = GoogleAiGeminiChatModel.builder().apiKey(apiKey).modelName(modelName)
 				.timeout(Duration.ofSeconds(120)).build();
 
 		// 3. Load the instructions
