@@ -11,13 +11,15 @@ import java.util.stream.Collectors;
 public class SchemaService {
 
     private final JdbcTemplate jdbcTemplate;
-
+    private String cachedSchema;
     @Autowired
     public SchemaService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public String generateSchemaPrompt() {
+    	if (cachedSchema != null) return cachedSchema;
+    	
         StringBuilder schema = new StringBuilder();
 
         // 1. Get all tables in the current database
@@ -43,6 +45,7 @@ public class SchemaService {
             schema.append(columnDetails).append("\n\n");
         }
 
-        return schema.toString();
+        this.cachedSchema = schema.toString();
+        return this.cachedSchema;
     }
 }
