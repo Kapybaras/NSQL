@@ -21,8 +21,6 @@ public class ChatController {
 	private final SchemaService schemaService;
 	private final JdbcTemplate jdbcTemplate;
 
-	// Spring automatically finds the GeminiManager, SchemaService and JdbcTemplate
-	// beans and passes them into this constructor, pretty cool huh.
 	@Autowired
 	public ChatController(GeminiManager ai, SchemaService schemaService, JdbcTemplate jdbcTemplate) {
 		this.ai = ai;

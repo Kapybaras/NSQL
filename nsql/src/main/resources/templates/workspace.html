@@ -3,17 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>NSQL | Console</title>
-    <link rel="stylesheet" th:href="@{/nsql-hub.css(v='1.0.5')}">
+    <link rel="stylesheet" th:href="@{/nsql-hub.css(v='1.0.8')}">
 </head>
 <body>
-
-    <aside class="sidebar">
-        <div class="brand-area">
-            <h2>Menu</h2>
-            <div class="status-dot"></div>
-        </div>
-        <button class="log-btn">Query Logs</button>
-    </aside>
 
     <main class="main-workspace">
         <header>NSQL Interface Console</header>
@@ -48,27 +40,27 @@
                 </form>
             </section>
 
-			<section class="panel">
-			    <div class="panel-title">DATABASE RESULTS</div>
-			    <div class="scroll-area">
-			        <table th:if="${DatabaseResults != null and !#lists.isEmpty(DatabaseResults)}" class="results-table">
-			            <thead>
-			                <tr>
-			                    <th th:each="column : ${DatabaseResults[0].keySet()}" th:text="${column}">Header</th>
-			                </tr>
-			            </thead>
-			            <tbody>
-			                <tr th:each="row : ${DatabaseResults}">
-			                    <td th:each="entry : ${row}" th:text="${entry.value}">Data</td>
-			                </tr>
-			            </tbody>
-			        </table>
+            <section class="panel">
+                <div class="panel-title">DATABASE RESULTS</div>
+                <div class="scroll-area">
+                    <table th:if="${DatabaseResults != null and !#lists.isEmpty(DatabaseResults)}" class="results-table">
+                        <thead>
+                            <tr>
+                                <th th:each="column : ${DatabaseResults[0].keySet()}" th:text="${column}">Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="row : ${DatabaseResults}">
+                                <td th:each="entry : ${row}" th:text="${entry.value}">Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-			        <div th:if="${DatabaseResults == null or #lists.isEmpty(DatabaseResults)}" class="empty-state">
-			            <p>No active query results.</p>
-			        </div>
-			    </div>
-			</section>
+                    <div th:if="${DatabaseResults == null or #lists.isEmpty(DatabaseResults)}" class="empty-state">
+                        <p>No active query results.</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
