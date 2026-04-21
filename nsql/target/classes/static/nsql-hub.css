@@ -80,6 +80,19 @@ header {
 ul { list-style: none; }
 .chatMessage { margin-bottom: 15px; display: flex; flex-direction: column; }
 
+.chatMessage.AI { 
+	align-items: flex-start;
+}
+
+.chatMessage.User { 
+	align-items: flex-end;
+}
+
+.chatMessage.User .bubble { 
+	background: #004a77; 
+	border-color: #005a8d;
+}
+
 .bubble {
     padding: 10px 15px;
     border-radius: 8px;
@@ -87,10 +100,6 @@ ul { list-style: none; }
     max-width: 85%;
     background: #2d2d2d;
 }
-
-.chatter { align-items: flex-end; }
-.chatter .bubble { background: #004a77; border-color: #005a8d; }
-.AI { align-items: flex-start; }
 
 .owner-tag { font-size: 0.65rem; margin-top: 5px; opacity: 0.5; text-transform: uppercase; }
 

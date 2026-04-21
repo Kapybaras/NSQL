@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("classpath:application-secrets.properties")
+//@PropertySource("classpath:application-secrets.properties")
 public class AisqlApplication {
 
 	public static void main(String[] args) {
